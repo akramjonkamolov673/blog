@@ -1,0 +1,28 @@
+{% extends 'inheritance/base.html' %}
+{% load crispy_forms_tags%}
+{% load socialaccount%}
+{% block mycontent %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-12 col-md-5 offset-md-7 mt-5">
+            <div class="card shadow p-2">
+                <h3>Login Form</h3>
+                <hr>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                    <button class="btn btn-info my-2">Log In</button>
+                </form>
+                <a href="{%provider_login_url 'google'%}" class="btn btn-secondary">Login with Google</a>
+                <div class="mb-2 text-center">
+                    <a href="{% url 'password_reset' %}" class="h5 text-decoration-none">Forgot Password</a>
+                </div>
+                <hr>
+                <div class="mb-2 text-center">
+                    <a href="{% url 'signup-page' %}" class="btn btn-success">Create account</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
